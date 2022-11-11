@@ -1,0 +1,22 @@
+:root {
+  --dark-black: rgb(46, 46, 51);
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: var(--dark-black);
+}
+@media print {
+  @page {
+    margin: 1cm;
+  }
+  .invoice-table,
+  .border-table,
+  .invoice-table thead th,
+  .invoice-table tbody td,
+  .invoice-table tfoot td {
+    border-width: var(--border-width);
+  }
+  .invoice-table td:nth-last-child(1),
+  .invoice-table td:nth-last-child(2) {
+    width: 100px;
+  }
+}
