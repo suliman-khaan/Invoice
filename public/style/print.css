@@ -4,10 +4,12 @@
   --border-style: solid;
   --border-color: var(--dark-black);
 }
+
 @media print {
   @page {
     margin: 1cm;
   }
+
   .invoice-table,
   .border-table,
   .invoice-table thead th,
@@ -15,8 +17,14 @@
   .invoice-table tfoot td {
     border-width: var(--border-width);
   }
+
   .invoice-table td:nth-last-child(1),
   .invoice-table td:nth-last-child(2) {
     width: 100px;
+  }
+
+  .header h5,
+  header h5 {
+    padding: 12px 60px!important;
   }
 }
