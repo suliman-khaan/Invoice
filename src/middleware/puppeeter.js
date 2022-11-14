@@ -32,26 +32,21 @@ const compile = async function (templateName, data) {
 // })()
 
 module.exports = {
-    async generatePDF(data) {
+    async generatePDF({ templateHtml, dataBinding, options }) {
         try {
-            const browser = await puppeteer.launch()
-            const page = await browser.newPage()
-            const content = await compile('backup', data)
-            await page.setContent(content)
-            const pdf = await page.pdf({
-                path: 'output.pdf',
-                format: 'A4',
-                printBackground: true,
-                margin: {
-                    left: 1,
-                    right: 1
-                }
-            })
+            const template = hbs.compile(templateHtml);
+            const finalHtml = encodeURIComponent(template(dataBinding));
 
-            console.log("done creating pdf")
-            await browser.close()
-            // process.exit()
-            return pdf;
+            const browser = await puppeteer.launch({
+                args: ["--no-sandbox"],
+                headless: true,
+            });
+            const page = await browser.newPage();
+            await page.goto(`data:text/html;charset=UTF-8,${finalHtml}`, {
+                waitUntil: "networkidle0",
+            });
+            await page.pdf(options);
+            await browser.close();
         } catch (e) {
             console.log(e)
         }
