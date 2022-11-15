@@ -1,56 +1,22 @@
-const express = require('express')
-const { generatePDF } = require('../middleware/puppeeter')
-const router = new express.Router()
+const express = require("express");
+const { generatePDF } = require("../middleware/pdf_generator");
+const router = new express.Router();
+const data = require("../data/data.json");
 const fs = require("fs");
-const path = require("path");
 
-router.get('/', (req, res) => {
-    res.render('backup')
-})
-router.get('/pdf', (req, res) => {
-    res.render('button')
-})
-router.get('/generatePDF', async (req, res) => {
-    (async () => {
-        const dataBinding = {
-            logo:fs.readFileSync(process.cwd()+'/templates/invoice/logo.png').toString('base64'),
-            items: [
-                {
-                    name: "item 1",
-                    price: 100,
-                },
-                {
-                    name: "item 2",
-                    price: 200,
-                },
-                {
-                    name: "item 3",
-                    price: 300,
-                },
-            ],
-            total: 600,
-            isWatermark: true,
-        };
+router.get("/", (req, res) => {
+  res.render("backup", { data });
+});
+router.get("/generatePDF", async (req, res) => {
+  const pdf = await generatePDF({ data });
+  if (pdf) {
+    console.log("Done: pdf is created!");
+    return res.render("backup", {
+      data,
+      msg: "PDF Generated. Check Invoices folder",
+    });
+  }
+  return res.render("backup", { data, msg: "Sorry failed to generate PDF." });
+});
 
-        const templateHtml = fs.readFileSync(
-            path.join(process.cwd(), "./templates/invoice/index.html"),
-            "utf8"
-        );
-
-        const options = {
-            format: "A4",
-            headerTemplate: "<p>Header</p>",
-            footerTemplate: "<p>Footer</p>",
-            displayHeaderFooter: true,
-            printBackground: true,
-            path: "invoice-1.pdf",
-        };
-
-        await generatePDF({ templateHtml, dataBinding, options });
-
-        console.log("Done: invoice.pdf is created!");
-        res.redirect('/pdf')
-    })();
-})
-
-module.exports = router
+module.exports = router;

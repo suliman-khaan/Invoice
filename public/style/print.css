@@ -1,0 +1,88 @@
+@media print {
+  :root {
+    --dark-black: rgb(46, 46, 51);
+    --border-width: 1pt;
+    --border-style: solid;
+    --border-color: var(--dark-black);
+    --border: var(--border-width) var(--border-style) var(--border-color);
+  }
+  @page {
+    margin: 12.7mm;
+  }
+  .fs-7 {
+    font-size: 7pt;
+  }
+
+  .fs-9 {
+    font-size: 9pt;
+  }
+
+  .fs-11 {
+    font-size: 11pt;
+  }
+
+  .fs-12 {
+    font-size: 12pt;
+  }
+
+  .fw-light {
+    font-weight: 300;
+  }
+
+  .fw-medium {
+    font-weight: 500;
+  }
+
+  .fw-bold {
+    font-weight: bold;
+  }
+
+  .lh-8 {
+    line-height: 8.4pt;
+  }
+
+  .mb-p-2 {
+    margin-bottom: 2pt;
+  }
+
+  .invoice-table,
+  .border-table,
+  .invoice-table thead th,
+  .invoice-table tbody td,
+  .invoice-table tfoot td {
+    border-width: var(--border-width);
+  }
+
+  .invoice-table td:nth-last-child(1) {
+    width: 38.5mm;
+  }
+
+  .invoice-table td:nth-last-child(2) {
+    width: 26.5mm;
+  }
+
+  header .logo,
+  .header .logo {
+    width: 50mm;
+  }
+
+  .header h5,
+  header h5 {
+    width: 60mm;
+    height: 12mm;
+    display: grid;
+    place-items: center;
+  }
+
+  .invoice-table .icon {
+    width: 10mm;
+  }
+
+  .invoice-table tbody tr:not(.foot) {
+    height: 93.75pt !important;
+  }
+  .detail p,
+  footer .detail p {
+    margin: 1pt 0;
+  }
+}
