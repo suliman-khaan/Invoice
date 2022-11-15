@@ -13,7 +13,6 @@ router.get('/pdf', (req, res) => {
 router.get('/generatePDF', async (req, res) => {
     (async () => {
         const dataBinding = {
-            title:"Hello",
             logo:fs.readFileSync(process.cwd()+'/templates/invoice/logo.png').toString('base64'),
             items: [
                 {
@@ -42,8 +41,7 @@ router.get('/generatePDF', async (req, res) => {
             format: "A4",
             headerTemplate: "<p>Header</p>",
             footerTemplate: "<p>Footer</p>",
-            displayHeaderFooter: false,
-            // margin: 0,
+            displayHeaderFooter: true,
             printBackground: true,
             path: "invoice-1.pdf",
         };
