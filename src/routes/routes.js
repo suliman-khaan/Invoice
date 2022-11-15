@@ -13,6 +13,8 @@ router.get('/pdf', (req, res) => {
 router.get('/generatePDF', async (req, res) => {
     (async () => {
         const dataBinding = {
+            title:"Hello",
+            logo:fs.readFileSync(process.cwd()+'/templates/invoice/logo.png').toString('base64'),
             items: [
                 {
                     name: "item 1",
@@ -32,7 +34,7 @@ router.get('/generatePDF', async (req, res) => {
         };
 
         const templateHtml = fs.readFileSync(
-            path.join(process.cwd(), "./templates/views/index.html"),
+            path.join(process.cwd(), "./templates/invoice/index.html"),
             "utf8"
         );
 
@@ -41,9 +43,9 @@ router.get('/generatePDF', async (req, res) => {
             headerTemplate: "<p>Header</p>",
             footerTemplate: "<p>Footer</p>",
             displayHeaderFooter: false,
-            margin: 0,
+            // margin: 0,
             printBackground: true,
-            path: "invoice.pdf",
+            path: "invoice-1.pdf",
         };
 
         await generatePDF({ templateHtml, dataBinding, options });
