@@ -18,13 +18,15 @@ module.exports = {
   async generatePDF({ templateHtml, dataBinding, options }) {
     try {
       const template = hbs.compile(templateHtml);
-      const finalHtml = encodeURIComponent(template(dataBinding));
+      const imgs = {
+        logo: fs.readFileSync(process.cwd() + '/templates/invoice/logo.png').toString('base64'),
+        kiosk: fs.readFileSync(process.cwd() + '/templates/invoice/kiosk.png').toString('base64'),
+        wallets: fs.readFileSync(process.cwd() + '/templates/invoice/wallets.png').toString('base64')
+      }
+      const finalHtml = encodeURIComponent(template({ ...dataBinding, ...imgs }));
 
       const browser = await puppeteer.launch({
-        args: [
-          "--allow-file-access-from-files",
-          "--enable-local-file-accesses",
-        ],
+        args: ['--no-sandbox'],
         headless: true,
       });
       const page = await browser.newPage();

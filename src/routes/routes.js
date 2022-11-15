@@ -13,8 +13,6 @@ router.get('/pdf', (req, res) => {
 router.get('/generatePDF', async (req, res) => {
     (async () => {
         const dataBinding = {
-            title:"Hello",
-            logo:fs.readFileSync(process.cwd()+'/templates/invoice/logo.png').toString('base64'),
             items: [
                 {
                     name: "item 1",
