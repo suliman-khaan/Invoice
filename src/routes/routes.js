@@ -1,38 +1,22 @@
-const express = require('express')
-const { generatePDF } = require('../controller/puppeeter')
-const router = new express.Router()
+const express = require("express");
+const { generatePDF } = require("../middleware/pdf_generator");
+const router = new express.Router();
+const data = require("../data/data.json");
+const fs = require("fs");
 
-router.get('/', (req, res) => {
-    res.render('button')
-})
+router.get("/", (req, res) => {
+  res.render("backup", { data });
+});
+router.get("/generatePDF", async (req, res) => {
+  const pdf = await generatePDF({ data });
+  if (pdf) {
+    console.log("Done: pdf is created!");
+    return res.render("backup", {
+      data,
+      msg: "PDF Generated. Check Invoices folder",
+    });
+  }
+  return res.render("backup", { data, msg: "Sorry failed to generate PDF." });
+});
 
-router.get('/generatePDF', async (req, res) => {
-    (async () => {
-        const dataBinding = {
-            items: [
-                {
-                    name: "item 1",
-                    price: 100,
-                },
-                {
-                    name: "item 2",
-                    price: 200,
-                },
-                {
-                    name: "item 3",
-                    price: 300,
-                },
-            ],
-            total: 600,
-            isWatermark: true,
-        };
-
-        const pdf = await generatePDF({ dataBinding });
-        if(pdf){
-            console.log("Done: invoice.pdf is created!");
-        }
-        res.redirect('/')
-    })();
-})
-
-module.exports = router
+module.exports = router;
