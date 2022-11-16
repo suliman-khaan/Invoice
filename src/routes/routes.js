@@ -1,19 +1,14 @@
 const express = require('express')
-const { generatePDF } = require('../middleware/puppeeter')
+const { generatePDF } = require('../controller/puppeeter')
 const router = new express.Router()
-const fs = require("fs");
-const path = require("path");
 
 router.get('/', (req, res) => {
-    res.render('backup')
-})
-router.get('/pdf', (req, res) => {
     res.render('button')
 })
+
 router.get('/generatePDF', async (req, res) => {
     (async () => {
         const dataBinding = {
-            logo:fs.readFileSync(process.cwd()+'/templates/invoice/logo.png').toString('base64'),
             items: [
                 {
                     name: "item 1",
@@ -32,24 +27,11 @@ router.get('/generatePDF', async (req, res) => {
             isWatermark: true,
         };
 
-        const templateHtml = fs.readFileSync(
-            path.join(process.cwd(), "./templates/invoice/index.html"),
-            "utf8"
-        );
-
-        const options = {
-            format: "A4",
-            headerTemplate: "<p>Header</p>",
-            footerTemplate: "<p>Footer</p>",
-            displayHeaderFooter: true,
-            printBackground: true,
-            path: "invoice-1.pdf",
-        };
-
-        await generatePDF({ templateHtml, dataBinding, options });
-
-        console.log("Done: invoice.pdf is created!");
-        res.redirect('/pdf')
+        const pdf = await generatePDF({ dataBinding });
+        if(pdf){
+            console.log("Done: invoice.pdf is created!");
+        }
+        res.redirect('/')
     })();
 })
 
