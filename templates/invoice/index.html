@@ -21,12 +21,15 @@
         --dark-black: rgb(46, 46, 51);
         --border-width: 1pt;
         --border-style: solid;
-        --border-color: var(--dark-black);
+        --border-color: black;
         --border: var(--border-width) var(--border-style) var(--border-color);
       }
 
       .bg-dark {
         background-color: var(--dark-black) !important;
+      }
+      .bg-dark {
+        background-color: black !important;
       }
 
       .text-bg-dark {
@@ -34,7 +37,7 @@
       }
 
       .border-dark {
-        border-color: var(--dark-black) !important;
+        border-color: var(--border-color) !important;
       }
 
       .border-table {
@@ -66,7 +69,7 @@
       }
 
       .fw-bold {
-        font-weight: bold;
+        font-weight: 600 !important;
       }
 
       .lh-8 {
@@ -79,6 +82,9 @@
 
       body {
         font-family: "Poppins", sans-serif;
+        background: url("data:image/png;base64,{{watermark}}") no-repeat center;
+        background-size: 100%;
+        color: black;
       }
 
       header .logo,
@@ -92,6 +98,7 @@
         height: 12mm;
         display: grid;
         place-items: center;
+        font-weight: 900 !important;
       }
 
       .detail p,
@@ -100,28 +107,42 @@
       }
 
       .invoice-table,
+      .invoice-footer,
       .invoice-table thead th,
       .invoice-table tbody td,
+      .invoice-footer tbody td,
       .invoice-table tfoot td {
         border: var(--border);
+        color: black;
       }
 
       .invoice-table,
+      .invoice-footer,
       .invoice-table thead th:first-child,
       .invoice-table thead th:last-child,
       .invoice-table tbody :not(.foot) td:first-child,
-      .invoice-table tbody td:last-child
+      .invoice-table tbody td:last-child,
+      .invoice-footer tbody td:last-child
 
     /* .invoice-table tfoot td:last-child  */ {
         border-left: none !important;
         border-right: none !important;
+      }
+      .invoice-table thead th {
+        font-weight: 900 !important;
+      }
+      .invoice-footer {
+        margin-top: -1pt;
       }
 
       .invoice-table tr td:first-child h5 {
         text-align: start;
       }
 
-      .invoice-table tr :not(td:first-child, th:first-child) {
+      .invoice-table tr :not(td:first-child, th:first-child),
+      .invoice-footer
+        tr:not(:first-child)
+        :not(td:first-child, th:first-child) {
         vertical-align: middle;
         text-align: center;
       }
@@ -142,23 +163,17 @@
         @page {
           margin: 12.7mm;
         }
-
-        .invoice-table,
-        .border-table,
-        .invoice-table thead th,
-        .invoice-table tbody td,
-        .invoice-table tfoot td {
-          border-width: var(--border-width);
+        .fw-light {
+          font-weight: 300;
         }
 
-        .invoice-table td:nth-last-child(1) {
-          width: 38.5mm;
+        .fw-medium {
+          font-weight: 500;
         }
 
-        .invoice-table td:nth-last-child(2) {
-          width: 26.5mm;
+        .fw-bold {
+          font-weight: 600 !important;
         }
-
         header .logo,
         .header .logo {
           width: 50mm;
@@ -166,13 +181,33 @@
 
         .header h5,
         header h5 {
-          width: 60mm;
-          height: 12mm;
+          width: 58.711mm;
+          height: 11.227mm;
           display: grid;
           place-items: center;
+          font-size: 12pt;
+          font-weight: 900 !important;
+        }
+        .invoice-table,
+        .border-table,
+        .invoice-table thead th,
+        .invoice-table tbody td,
+        .invoice-footer tbody td,
+        .invoice-table tfoot td {
+          border-width: var(--border-width);
         }
 
-        .invoice-table .icon {
+        .invoice-table td:nth-last-child(1),
+        .invoice-footer td:nth-last-child(1) {
+          width: 38.5mm;
+        }
+
+        .invoice-table td:nth-last-child(2),
+        .invoice-footer td:nth-last-child(2) {
+          width: 26.5mm;
+        }
+
+        .invoice-footer .icon {
           width: 10mm;
         }
       }
@@ -180,7 +215,7 @@
   </head>
 
   <body>
-    <div class="container py-5">
+    <div>
       <header>
         <div class="d-flex justify-content-between align-items-center">
           <img src="data:image/png;base64,{{logo}}" class="img-fluid logo" />
@@ -205,7 +240,7 @@
             <p class="fs-9">Industry: {{details.company.industry}}</p>
           </div>
         </div>
-        <table class="table table-sm invoice-table">
+        <table class="table table-sm invoice-table mb-0">
           <thead>
             <tr>
               <th scope="col" class="fs-9">Items</th>
@@ -227,8 +262,24 @@
               <td class="fs-11">{{this.qty}}</td>
               <td class="fs-11">{{this.total}}</td>
             </tr>
+            <tr>
+              <td>
+                <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
+                {{#each this.subtitle}}
+                <p class="fs-9 fw-light mb-0 text-start">
+                  {{this.name}}: {{this.value}}
+                </p>
+                {{/each}}
+              </td>
+              <td class="fs-11">{{this.qty}}</td>
+              <td class="fs-11">{{this.total}}</td>
+            </tr>
             {{/each}}
-            <!-- Footer -->
+          </tbody>
+        </table>
+        <!-- Footer -->
+        <table class="table table-sm invoive-table invoice-footer">
+          <tbody>
             <tr class="foot">
               <td
                 rowspan="4"
@@ -281,8 +332,8 @@
                   >* This price is valid for 3 days only.</span
                 >
               </td>
-              <td class="fs-11 fw-medium">Sub Total</td>
-              <td class="fs-11">148350</td>
+              <td class="fs-11 fw-medium text-center">Sub Total</td>
+              <td class="fs-11 text-center">148350</td>
             </tr>
             <tr class="foot">
               <td class="text-center fs-11 fw-medium">Discount</td>
@@ -294,7 +345,7 @@
             </tr>
             <tr class="foot">
               <td
-                class="bg-dark fs-11 fw-medium text-white text-center align-middle"
+                class="bg-black fs-11 fw-medium text-white text-center align-middle"
               >
                 Total
               </td>
@@ -316,6 +367,9 @@
           </div>
         </div>
       </footer>
+      {{#times 10}}
+      <span>{{this}}</span>
+      {{/times}}
     </div>
 
     <script
