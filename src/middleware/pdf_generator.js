@@ -2,7 +2,11 @@ const puppeteer = require("puppeteer");
 const hbs = require("hbs");
 const fs = require("fs");
 const path = require("path");
-
+hbs.registerHelper("times", function (n, block) {
+  var accum = "";
+  for (var i = 0; i < n; ++i) accum += block.fn(i);
+  return accum;
+});
 module.exports = {
   async generatePDF({ data: dataBinding }) {
     try {
@@ -27,6 +31,9 @@ module.exports = {
           .toString("base64"),
         wallets: fs
           .readFileSync(process.cwd() + "/templates/invoice/wallets.png")
+          .toString("base64"),
+        watermark: fs
+          .readFileSync(process.cwd() + "/templates/invoice/watermark.png")
           .toString("base64"),
       };
       const finalHtml = encodeURIComponent(
