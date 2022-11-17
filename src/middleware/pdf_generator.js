@@ -19,7 +19,8 @@ module.exports = {
         format: "A4",
         displayHeaderFooter: false,
         printBackground: true,
-        path: `invoices/invoice-${Date.now()}.pdf`,
+        // path: `invoices/invoice-${Date.now()}.pdf`,
+        path: `invoices/invoice-1}.pdf`,
       };
       const template = hbs.compile(templateHtml);
       const imgs = {

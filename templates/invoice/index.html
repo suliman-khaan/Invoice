@@ -87,6 +87,10 @@
         color: black;
       }
 
+      /* header {
+        position: fixed;
+        width: 100%;
+      } */
       header .logo,
       .header .logo {
         width: 50mm;
@@ -215,7 +219,7 @@
   </head>
 
   <body>
-    <div>
+    <div class="container">
       <header>
         <div class="d-flex justify-content-between align-items-center">
           <img src="data:image/png;base64,{{logo}}" class="img-fluid logo" />
@@ -253,11 +257,33 @@
             <tr>
               <td>
                 <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
-                {{#each this.subtitle}}
-                <p class="fs-9 fw-light mb-0 text-start">
-                  {{this.name}}: {{this.value}}
-                </p>
-                {{/each}}
+                <div class="row p-0">
+                  <div class="col text-start">
+                    {{#each this.subtitle}}
+                    {{../this.subtitle.length}}
+                    <p class="fs-9 fw-light mb-0 text-start">
+                      {{this.name}}: {{this.value}}
+                    </p>
+                    {{/each}}
+
+                  </div>
+                  <div class="col text-start">
+                    {{#each this.subtitle}}
+                    <p class="fs-9 fw-light mb-0 text-start">
+                      {{this.name}}: {{this.value}}
+                    </p>
+                    {{/each}}
+
+                  </div>
+                  <div class="col text-start">
+                    {{#each this.subtitle}}
+                    <p class="fs-9 fw-light mb-0 text-start">
+                      {{this.name}}: {{this.value}}
+                    </p>
+                    {{/each}}
+
+                  </div>
+                </div>
               </td>
               <td class="fs-11">{{this.qty}}</td>
               <td class="fs-11">{{this.total}}</td>
@@ -368,7 +394,7 @@
         </div>
       </footer>
       {{#times 10}}
-      <span>{{this}}</span>
+      <p>{{this}}</p>
       {{/times}}
     </div>
 

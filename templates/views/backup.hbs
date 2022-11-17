@@ -37,9 +37,15 @@
         <tr>
           <td>
             <h5>{{this.title}}</h5>
-            {{#each this.subtitle}}
+            {{#times 3}}
+            {{#equalTo ../this.subtitle.length 1}}
+            {{!-- Working --}}
+            {{#with (lookup ../this.subtitle @index)}}
             <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p>
-            {{/each}}
+            {{/with}}
+            {{!-- <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p> --}}
+            {{/equalTo}}
+            {{/times}}
           </td>
           <td>{{this.qty}}</td>
           <td>{{this.total}}</td>
