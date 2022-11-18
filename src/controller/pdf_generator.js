@@ -2,10 +2,19 @@ const puppeteer = require("puppeteer");
 const hbs = require("hbs");
 const fs = require("fs");
 const path = require("path");
-hbs.registerHelper("times", function (n, block) {
-  var accum = "";
-  for (var i = 0; i < n; ++i) accum += block.fn(i);
-  return accum;
+hbs.registerHelper("equalTo", function (val1, val2, options) {
+  console.log(Math.ceil(val1 / 5))
+  if (Math.ceil(val1 / 5) == val2) {
+    return options.fn(this);
+  }
+});
+hbs.registerHelper("times", function (from, to, block) {
+  var repetition = "";
+  for (var i = from; i < to; ++i) {
+    block.data.index = i
+    repetition += block.fn(i);
+  }
+  return repetition;
 });
 module.exports = {
   async generatePDF({ data: dataBinding }) {

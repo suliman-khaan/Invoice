@@ -1,63 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Invoice</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --dark-black: rgb(46, 46, 51);
-        --border-width: 1pt;
-        --border-style: solid;
-        --border-color: black;
-        --border: var(--border-width) var(--border-style) var(--border-color);
-      }
 
-      .bg-dark {
-        background-color: var(--dark-black) !important;
-      }
-      .bg-dark {
-        background-color: black !important;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invoice</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,700&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --dark-black: rgb(46, 46, 51);
+      --border-width: 1pt;
+      --border-style: solid;
+      --border-color: black;
+      --border: var(--border-width) var(--border-style) var(--border-color);
+    }
 
-      .text-bg-dark {
-        background-color: var(--dark-black) !important;
-      }
+    .bg-dark {
+      background-color: var(--dark-black) !important;
+    }
 
-      .border-dark {
-        border-color: var(--border-color) !important;
-      }
+    .bg-dark {
+      background-color: black !important;
+    }
 
-      .border-table {
-        border: var(--border);
-      }
+    .text-bg-dark {
+      background-color: var(--dark-black) !important;
+    }
 
-      .fs-7 {
-        font-size: 7pt;
-      }
+    .border-dark {
+      border-color: var(--border-color) !important;
+    }
 
-      .fs-9 {
-        font-size: 9pt;
-      }
+    .border-table {
+      border: var(--border);
+    }
 
-      .fs-11 {
-        font-size: 11pt;
-      }
+    .fs-7 {
+      font-size: 7pt;
+    }
 
-      .fs-12 {
-        font-size: 12pt;
+    .fs-9 {
+      font-size: 9pt;
+    }
+
+    .fs-11 {
+      font-size: 11pt;
+    }
+
+    .fs-12 {
+      font-size: 12pt;
+    }
+
+    .fw-light {
+      font-weight: 300;
+    }
+
+    .fw-medium {
+      font-weight: 500;
+    }
+
+    .fw-bold {
+      font-weight: 900 !important;
+    }
+
+    .lh-8 {
+      line-height: 8.4pt;
+    }
+
+    .mb-p-2 {
+      margin-bottom: 2pt;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: url("data:image/png;base64,{{watermark}}") no-repeat center;
+      background-size: 100%;
+      color: black;
+    }
+
+    /* header {
+        position: fixed;
+        width: 100%;
+      } */
+    header .logo,
+    .header .logo {
+      width: 50mm;
+    }
+
+    .header h5,
+    header h5 {
+      width: 60mm;
+      height: 12mm;
+      display: grid;
+      place-items: center;
+      font-weight: 900 !important;
+    }
+
+    .detail p,
+    footer .detail p {
+      margin: 1pt 0;
+    }
+
+    .invoice-table,
+    .invoice-footer,
+    .invoice-table thead th,
+    .invoice-table tbody td,
+    .invoice-footer tbody td,
+    .invoice-table tfoot td {
+      border: var(--border);
+      color: black;
+    }
+
+    .invoice-table,
+    .invoice-footer,
+    .invoice-table thead th:first-child,
+    .invoice-table thead th:last-child,
+    .invoice-table tbody :not(.foot) td:first-child,
+    .invoice-table tbody td:last-child,
+    .invoice-footer tbody td:last-child
+
+    /* .invoice-table tfoot td:last-child  */
+      {
+      border-left: none !important;
+      border-right: none !important;
+    }
+
+    .invoice-table thead th {
+      font-weight: 900 !important;
+    }
+
+    .invoice-footer {
+      margin-top: -1pt;
+    }
+
+    .invoice-table tr td:first-child h5 {
+      text-align: start;
+    }
+
+    .invoice-table tr :not(td:first-child, th:first-child),
+    .invoice-footer tr:not(:first-child) :not(td:first-child, th:first-child) {
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .invoice-table tbody tr:not(.foot) {
+      height: 93.75pt !important;
+    }
+
+    .invoice-table .credit-text {
+      line-height: 1.2;
+    }
+
+    .invoice-table .credit-text span {
+      line-height: 2.5;
+    }
+
+    @media print {
+      @page {
+        margin: 12.7mm;
       }
 
       .fw-light {
@@ -69,28 +174,9 @@
       }
 
       .fw-bold {
-        font-weight: 900 !important;
+        font-weight: 600 !important;
       }
 
-      .lh-8 {
-        line-height: 8.4pt;
-      }
-
-      .mb-p-2 {
-        margin-bottom: 2pt;
-      }
-
-      body {
-        font-family: "Poppins", sans-serif;
-        background: url("data:image/png;base64,{{watermark}}") no-repeat center;
-        background-size: 100%;
-        color: black;
-      }
-
-      /* header {
-        position: fixed;
-        width: 100%;
-      } */
       header .logo,
       .header .logo {
         width: 50mm;
@@ -98,197 +184,139 @@
 
       .header h5,
       header h5 {
-        width: 60mm;
-        height: 12mm;
+        width: 58.711mm;
+        height: 11.227mm;
         display: grid;
         place-items: center;
+        font-size: 12pt;
         font-weight: 900 !important;
       }
 
-      .detail p,
-      footer .detail p {
-        margin: 1pt 0;
-      }
-
       .invoice-table,
-      .invoice-footer,
+      .border-table,
       .invoice-table thead th,
       .invoice-table tbody td,
       .invoice-footer tbody td,
       .invoice-table tfoot td {
-        border: var(--border);
-        color: black;
+        border-width: var(--border-width);
       }
 
-      .invoice-table,
-      .invoice-footer,
-      .invoice-table thead th:first-child,
-      .invoice-table thead th:last-child,
-      .invoice-table tbody :not(.foot) td:first-child,
-      .invoice-table tbody td:last-child,
-      .invoice-footer tbody td:last-child
-
-    /* .invoice-table tfoot td:last-child  */ {
-        border-left: none !important;
-        border-right: none !important;
-      }
-      .invoice-table thead th {
-        font-weight: 900 !important;
-      }
-      .invoice-footer {
-        margin-top: -1pt;
+      .invoice-table td:nth-last-child(1),
+      .invoice-footer td:nth-last-child(1) {
+        width: 38.5mm;
       }
 
-      .invoice-table tr td:first-child h5 {
-        text-align: start;
+      .invoice-table td:nth-last-child(2),
+      .invoice-footer td:nth-last-child(2) {
+        width: 26.5mm;
       }
 
-      .invoice-table tr :not(td:first-child, th:first-child),
-      .invoice-footer
-        tr:not(:first-child)
-        :not(td:first-child, th:first-child) {
-        vertical-align: middle;
-        text-align: center;
+      .invoice-footer .icon {
+        width: 10mm;
       }
+    }
+  </style>
+</head>
 
-      .invoice-table tbody tr:not(.foot) {
-        height: 93.75pt !important;
-      }
-
-      .invoice-table .credit-text {
-        line-height: 1.2;
-      }
-
-      .invoice-table .credit-text span {
-        line-height: 2.5;
-      }
-
-      @media print {
-        @page {
-          margin: 12.7mm;
-        }
-        .fw-light {
-          font-weight: 300;
-        }
-
-        .fw-medium {
-          font-weight: 500;
-        }
-
-        .fw-bold {
-          font-weight: 600 !important;
-        }
-        header .logo,
-        .header .logo {
-          width: 50mm;
-        }
-
-        .header h5,
-        header h5 {
-          width: 58.711mm;
-          height: 11.227mm;
-          display: grid;
-          place-items: center;
-          font-size: 12pt;
-          font-weight: 900 !important;
-        }
-        .invoice-table,
-        .border-table,
-        .invoice-table thead th,
-        .invoice-table tbody td,
-        .invoice-footer tbody td,
-        .invoice-table tfoot td {
-          border-width: var(--border-width);
-        }
-
-        .invoice-table td:nth-last-child(1),
-        .invoice-footer td:nth-last-child(1) {
-          width: 38.5mm;
-        }
-
-        .invoice-table td:nth-last-child(2),
-        .invoice-footer td:nth-last-child(2) {
-          width: 26.5mm;
-        }
-
-        .invoice-footer .icon {
-          width: 10mm;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="container">
-      <header>
-        <div class="d-flex justify-content-between align-items-center">
-          <img src="data:image/png;base64,{{logo}}" class="img-fluid logo" />
-          <h5 class="text-uppercase text-bg-dark">Quotation</h5>
+<body>
+  <div class="container">
+    <header>
+      <div class="d-flex justify-content-between align-items-center">
+        <img src="data:image/png;base64,{{logo}}" class="img-fluid logo" />
+        <h5 class="text-uppercase text-bg-dark">Quotation</h5>
+      </div>
+    </header>
+    <main>
+      <div class="detail row py-4">
+        <div class="col">
+          <h5 class="fs-9 fw-bold mb-0">{{details.form.type}}</h5>
+          <p class="fs-9">No: {{details.form.number}}</p>
+          <p class="fs-9">Date: 06/08/2022</p>
         </div>
-      </header>
-      <main>
-        <div class="detail row py-4">
-          <div class="col">
-            <h5 class="fs-9 fw-bold mb-0">{{details.form.type}}</h5>
-            <p class="fs-9">No: {{details.form.number}}</p>
-            <p class="fs-9">Date: 06/08/2022</p>
-          </div>
-          <div class="col">
-            <h5 class="fs-9 fw-bold mb-0">Customer</h5>
-            <p class="fs-9">Name: {{details.customer.name}}</p>
-            <p class="fs-9">Region: {{details.customer.region}}</p>
-          </div>
-          <div class="col">
-            <h5 class="fs-9 fw-bold mb-0">Company</h5>
-            <p class="fs-9">Name: {{details.company.name}}</p>
-            <p class="fs-9">Industry: {{details.company.industry}}</p>
-          </div>
+        <div class="col">
+          <h5 class="fs-9 fw-bold mb-0">Customer</h5>
+          <p class="fs-9">Name: {{details.customer.name}}</p>
+          <p class="fs-9">Region: {{details.customer.region}}</p>
         </div>
-        <table class="table table-sm invoice-table mb-0">
-          <thead>
-            <tr>
-              <th scope="col" class="fs-9">Items</th>
-              <th scope="col" class="fs-9">Quantity</th>
-              <th scope="col" class="fs-9">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each Items}}
-            <tr>
-              <td>
-                <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
-                <div class="row p-0">
-                  <div class="col text-start">
-                    {{#each this.subtitle}}
-                    {{../this.subtitle.length}}
-                    <p class="fs-9 fw-light mb-0 text-start">
-                      {{this.name}}: {{this.value}}
-                    </p>
-                    {{/each}}
-
-                  </div>
-                  <div class="col text-start">
-                    {{#each this.subtitle}}
-                    <p class="fs-9 fw-light mb-0 text-start">
-                      {{this.name}}: {{this.value}}
-                    </p>
-                    {{/each}}
-
-                  </div>
-                  <div class="col text-start">
-                    {{#each this.subtitle}}
-                    <p class="fs-9 fw-light mb-0 text-start">
-                      {{this.name}}: {{this.value}}
-                    </p>
-                    {{/each}}
-
-                  </div>
+        <div class="col">
+          <h5 class="fs-9 fw-bold mb-0">Company</h5>
+          <p class="fs-9">Name: {{details.company.name}}</p>
+          <p class="fs-9">Industry: {{details.company.industry}}</p>
+        </div>
+      </div>
+      <table class="table table-sm invoice-table mb-0">
+        <thead>
+          <tr>
+            <th scope="col" class="fs-9">Items</th>
+            <th scope="col" class="fs-9">Quantity</th>
+            <th scope="col" class="fs-9">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each Items}}
+          <tr>
+            <td>
+              <h5>{{this.title}}</h5>
+              {{!-- @One Column --}}
+              {{#equalTo this.subtitle.length 1}}
+              {{#each this.subtitle}}
+              <p class="fs-9 fw-light mb-0 text-start">
+                {{this.name}}: {{this.value}}
+              </p>
+              {{/each}}
+              {{/equalTo}}
+              {{!-- @Two columns --}}
+              {{#equalTo this.subtitle.length 2}}
+              <div class="row p-0">
+                <div class="col">
+                  {{#times 0 3}}
+                  {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">{{this.name}}: {{this.value}}</p>
+                  {{/with}}
+                  {{/times}}
                 </div>
-              </td>
-              <td class="fs-11">{{this.qty}}</td>
-              <td class="fs-11">{{this.total}}</td>
-            </tr>
-            <tr>
+                <div class="col">
+                  {{#times 3 this.subtitle.length}}
+                  {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">{{name}}: {{value}}</p>
+                  {{/with}}
+                  {{/times}}
+                </div>
+                <div class="col"></div>
+              </div>
+              {{/equalTo}}
+              {{!-- @Three columns --}}
+              {{#equalTo this.subtitle.length 3}}
+              <div class="row p-0">
+                <div class="col">
+                  {{#times 0 5}}
+                  {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">{{this.name}}: {{this.value}}</p>
+                  {{/with}}
+                  {{/times}}
+                </div>
+                <div class="col">
+                  {{#times 5 10}}
+                  {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">{{name}}: {{value}}</p>
+                  {{/with}}
+                  {{/times}}
+                </div>
+                <div class="col">
+                  {{#times 10 this.subtitle.length}}
+                  {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">{{name}}: {{value}}</p>
+                  {{/with}}
+                  {{/times}}
+                </div>
+              </div>
+              {{/equalTo}}
+            </td>
+            <td>{{this.qty}}</td>
+            <td>{{this.total}}</td>
+          </tr>
+          {{/each}}
+          <!-- <tr>
               <td>
                 <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
                 {{#each this.subtitle}}
@@ -299,109 +327,93 @@
               </td>
               <td class="fs-11">{{this.qty}}</td>
               <td class="fs-11">{{this.total}}</td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <!-- Footer -->
-        <table class="table table-sm invoive-table invoice-footer">
-          <tbody>
-            <tr class="foot">
-              <td
-                rowspan="4"
-                class="text-start align-top"
-                style="border-left: 0; border-bottom-color: transparent"
-              >
-                <h5 class="fs-11 fw-medium">Payment Method</h5>
-                <div class="d-flex mb-2">
-                  <div class="col text-start me-2 border-table px-1">
-                    <div class="d-flex align-items-center py-2">
-                      <div class="col-4 pe-1 m-0">
-                        <img
-                          src="data:image/png;base64,{{wallets}}"
-                          class="icon"
-                        />
-                      </div>
-                      <div class="d-inline text-start m-0">
-                        <h5 class="text-start m-0 fs-9">E-Wallet</h5>
-                        <p class="fs-7 lh-8 text-start m-0">
-                          Vodafone Cash, Etisalat Cash, Orange Money
-                        </p>
-                      </div>
+            </tr> -->
+        </tbody>
+      </table>
+      <!-- Footer -->
+      <table class="table table-sm invoive-table invoice-footer">
+        <tbody>
+          <tr class="foot">
+            <td rowspan="4" class="text-start align-top" style="border-left: 0; border-bottom-color: transparent">
+              <h5 class="fs-11 fw-medium">Payment Method</h5>
+              <div class="d-flex mb-2">
+                <div class="col text-start me-2 border-table px-1">
+                  <div class="d-flex align-items-center py-2">
+                    <div class="col-4 pe-1 m-0">
+                      <img src="data:image/png;base64,{{wallets}}" class="icon" />
                     </div>
-                  </div>
-                  <div class="col text-start me-2 border-table px-1">
-                    <div class="d-flex align-items-center py-2">
-                      <div class="col-4 pe-1 m-0">
-                        <img
-                          src="data:image/png;base64,{{kiosk}}"
-                          class="icon"
-                        />
-                      </div>
-                      <div class="d-inline text-start m-0">
-                        <h5 class="text-start m-0 fs-9">Kiosk Payment</h5>
-                        <p class="fs-7 lh-8 text-start m-0">
-                          Aman, Masary, Momkn
-                        </p>
-                      </div>
+                    <div class="d-inline text-start m-0">
+                      <h5 class="text-start m-0 fs-9">E-Wallet</h5>
+                      <p class="fs-7 lh-8 text-start m-0">
+                        Vodafone Cash, Etisalat Cash, Orange Money
+                      </p>
                     </div>
-                  </div>
-                  <div class="col text-start">
-                    <p class="text-start m-0 ms-2 fs-9 credit-text">
-                      <span>Also,</span><br />
-                      Cash & Credit <br />
-                      Card at <b>Office</b>
-                    </p>
                   </div>
                 </div>
-                <span class="fs-9 fw-light"
-                  >* This price is valid for 3 days only.</span
-                >
-              </td>
-              <td class="fs-11 fw-medium text-center">Sub Total</td>
-              <td class="fs-11 text-center">148350</td>
-            </tr>
-            <tr class="foot">
-              <td class="text-center fs-11 fw-medium">Discount</td>
-              <td class="fs-11">-7415</td>
-            </tr>
-            <tr class="foot">
-              <td class="text-center fs-11 fw-medium">Tax (14%)</td>
-              <td class="fs-11">19731</td>
-            </tr>
-            <tr class="foot">
-              <td
-                class="bg-black fs-11 fw-medium text-white text-center align-middle"
-              >
-                Total
-              </td>
-              <td>1600666</td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
-      <footer>
-        <div class="detail d-flex py-4 justify-content-between">
-          <div>
-            <p class="fs-9">16 Mahmoud Khairy,<br />Nasr City, Cairo, Egypt.</p>
-          </div>
-          <div>
-            <p class="fs-9">+20 1097977924<br />+20 1097977924</p>
-          </div>
-          <div>
-            <p class="fs-9">office@freshprint.eg<br />office@freshprint.eg</p>
-          </div>
+                <div class="col text-start me-2 border-table px-1">
+                  <div class="d-flex align-items-center py-2">
+                    <div class="col-4 pe-1 m-0">
+                      <img src="data:image/png;base64,{{kiosk}}" class="icon" />
+                    </div>
+                    <div class="d-inline text-start m-0">
+                      <h5 class="text-start m-0 fs-9">Kiosk Payment</h5>
+                      <p class="fs-7 lh-8 text-start m-0">
+                        Aman, Masary, Momkn
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col text-start">
+                  <p class="text-start m-0 ms-2 fs-9 credit-text">
+                    <span>Also,</span><br />
+                    Cash & Credit <br />
+                    Card at <b>Office</b>
+                  </p>
+                </div>
+              </div>
+              <span class="fs-9 fw-light">* This price is valid for 3 days only.</span>
+            </td>
+            <td class="fs-11 fw-medium text-center">Sub Total</td>
+            <td class="fs-11 text-center">148350</td>
+          </tr>
+          <tr class="foot">
+            <td class="text-center fs-11 fw-medium">Discount</td>
+            <td class="fs-11">-7415</td>
+          </tr>
+          <tr class="foot">
+            <td class="text-center fs-11 fw-medium">Tax (14%)</td>
+            <td class="fs-11">19731</td>
+          </tr>
+          <tr class="foot">
+            <td class="bg-black fs-11 fw-medium text-white text-center align-middle">
+              Total
+            </td>
+            <td>1600666</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+    <footer>
+      <div class="detail d-flex py-4 justify-content-between">
+        <div>
+          <p class="fs-9">16 Mahmoud Khairy,<br />Nasr City, Cairo, Egypt.</p>
         </div>
-      </footer>
-      {{#times 10}}
-      <p>{{this}}</p>
-      {{/times}}
-    </div>
+        <div>
+          <p class="fs-9">+20 1097977924<br />+20 1097977924</p>
+        </div>
+        <div>
+          <p class="fs-9">office@freshprint.eg<br />office@freshprint.eg</p>
+        </div>
+      </div>
+    </footer>
+    {{#times 10}}
+    <p>{{this}}</p>
+    {{/times}}
+  </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
