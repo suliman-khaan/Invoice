@@ -2,28 +2,37 @@ const puppeteer = require("puppeteer");
 const hbs = require("hbs");
 const fs = require("fs");
 const path = require("path");
+
+//hbs helper -- Condition check
 hbs.registerHelper("equalTo", function (val1, val2, options) {
-  console.log(Math.ceil(val1 / 5))
   if (Math.ceil(val1 / 5) == val2) {
     return options.fn(this);
   }
 });
+
+// hbs helper -- For Loop
 hbs.registerHelper("times", function (from, to, block) {
   var repetition = "";
   for (var i = from; i < to; ++i) {
-    block.data.index = i
+    block.data.index = i;
     repetition += block.fn(i);
   }
   return repetition;
 });
+
 module.exports = {
   async generatePDF({ data: dataBinding }) {
     try {
+      // read invoice html template
       const templateHtml = fs.readFileSync(
         path.join(process.cwd(), "./templates/invoice/index.html"),
         "utf8"
       );
 
+      // option for the pdf generator
+      // page size i.e A3,A4,A5,A6, LEGAL
+      // print watermark(printBackground)
+      // path with extension(.pdf) where the pdf will save
       const options = {
         format: "A4",
         displayHeaderFooter: false,
@@ -31,7 +40,11 @@ module.exports = {
         // path: `invoices/invoice-${Date.now()}.pdf`,
         path: `invoices/invoice-1}.pdf`,
       };
+
+      //compile template as hbs
       const template = hbs.compile(templateHtml);
+
+      //images to base64
       const imgs = {
         logo: fs
           .readFileSync(process.cwd() + "/templates/invoice/logo.png")
@@ -46,20 +59,32 @@ module.exports = {
           .readFileSync(process.cwd() + "/templates/invoice/watermark.png")
           .toString("base64"),
       };
+
+      //encode the data(JSON) and images
       const finalHtml = encodeURIComponent(
         template({ ...dataBinding, ...imgs })
       );
 
+      // launch a browser instance with given arguments
       const browser = await puppeteer.launch({
         args: ["--no-sandbox"],
         headless: true,
       });
+
+      // create a new page in the browser context.
       const page = await browser.newPage();
+
+      // scraping the invoice template
       await page.goto(`data:text/html;charset=UTF-8,${finalHtml}`, {
         waitUntil: "networkidle0",
       });
+
+      //generating pdf
       await page.pdf(options);
+
+      //close the browser instance
       await browser.close();
+
       if (page) {
         return true;
       }

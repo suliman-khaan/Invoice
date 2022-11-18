@@ -20,7 +20,6 @@ app.use(express.static(publicPath));
 hbs.registerPartials(partialPath);
 
 hbs.registerHelper("equalTo", function (val1, val2, options) {
-  console.log(Math.ceil(val1 / 5))
   if (Math.ceil(val1 / 5) == val2) {
     return options.fn(this);
   }
