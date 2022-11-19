@@ -3,14 +3,14 @@ const hbs = require("hbs");
 const fs = require("fs");
 const path = require("path");
 
-//hbs helper -- Condition check
+//hbs helper
 hbs.registerHelper("equalTo", function (val1, val2, options) {
   if (Math.ceil(val1 / 5) == val2) {
     return options.fn(this);
   }
 });
 
-// hbs helper -- For Loop
+// hbs helper
 hbs.registerHelper("times", function (from, to, block) {
   var repetition = "";
   for (var i = from; i < to; ++i) {
@@ -31,17 +31,15 @@ module.exports = {
 
       // option for the pdf generator
       // page size i.e A3,A4,A5,A6, LEGAL
-      // print watermark(printBackground)
       // path with extension(.pdf) where the pdf will save
       const options = {
         format: "A4",
         displayHeaderFooter: false,
         printBackground: true,
-        // path: `invoices/invoice-${Date.now()}.pdf`,
-        path: `invoices/invoice-1}.pdf`,
+        path: `invoices/invoice-${Date.now()}.pdf`,
       };
 
-      //compile template as hbs
+      //compile template
       const template = hbs.compile(templateHtml);
 
       //images to base64
@@ -60,7 +58,7 @@ module.exports = {
           .toString("base64"),
       };
 
-      //encode the data(JSON) and images
+      //encode the data + images
       const finalHtml = encodeURIComponent(
         template({ ...dataBinding, ...imgs })
       );
