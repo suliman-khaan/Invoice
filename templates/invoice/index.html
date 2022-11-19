@@ -86,6 +86,14 @@
 
         color: black;
       }
+      .header-space {
+        height: 40.56mm;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+      }
 
       header .logo,
       .header .logo {
@@ -101,6 +109,9 @@
         font-weight: 900 !important;
       }
 
+      .detail {
+        padding-top: 8mm;
+      }
       .detail p,
       footer .detail p {
         margin: 1pt 0;
@@ -114,16 +125,17 @@
         border: var(--border);
         color: black;
       }
+      .invoice-table {
+        border-top-color: transparent;
+      }
 
       .invoice-table,
-    .invoice-footer,
-    .invoice-table thead th:first-child,
-    .invoice-table thead th:last-child,
-    .invoice-table tbody :not(.foot) td:first-child,
-    .invoice-table tbody td:last-child,
-    .invoice-footer tbody td:last-child
-
-    /* .invoice-table tfoot td:last-child  */ {
+      .invoice-footer,
+      .invoice-table thead th:first-child,
+      .invoice-table thead th:last-child,
+      .invoice-table tbody :not(.foot) td:first-child,
+      .invoice-table tbody td:last-child,
+      .invoice-footer tbody td:last-child {
         border-left: none !important;
         border-right: none !important;
       }
@@ -162,11 +174,11 @@
       footer {
         position: fixed;
         bottom: 0;
-        width: calc(100%);
+        width: 100%;
       }
       @media print {
         @page {
-          margin:12.7mm;
+          margin: 12.7mm;
         }
 
         table {
@@ -247,7 +259,7 @@
           <img src="data:image/png;base64,{{logo}}" class="img-fluid logo" />
           <h5 class="text-uppercase text-bg-dark">Quotation</h5>
         </div>
-        <div class="detail row py-4">
+        <div class="detail row">
           <div class="col">
             <h4 class="fs-9 fw-bold mb-0">{{details.form.type}}</h4>
             <p class="fs-9">No: {{details.form.number}}</p>
@@ -268,6 +280,12 @@
       <main>
         <table class="table table-sm invoice-table mb-0">
           <thead>
+            <tr class="no-border">
+              <td colspan="3">
+                <!-- header goes here -->
+                <div class="header-space">&nbsp;</div>
+              </td>
+            </tr>
             <tr>
               <th scope="col" class="fs-9">Items</th>
               <th scope="col" class="fs-9">Quantity</th>
