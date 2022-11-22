@@ -9,6 +9,12 @@ hbs.registerHelper("equalTo", function (val1, val2, options) {
     return options.fn(this);
   }
 });
+//hbs helper
+hbs.registerHelper("dividedBy", function (val1, val2, options) {
+  if (val1 % val2 == 0) {
+    return options.fn(this);
+  }
+});
 
 // hbs helper
 hbs.registerHelper("times", function (from, to, block) {

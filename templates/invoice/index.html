@@ -10,13 +10,14 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
-    />
+    /> -->
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
       :root {
         --dark-black: rgb(46, 46, 51);
         --border-width: 1pt;
@@ -96,19 +97,20 @@
       .header-space {
         height: 40.56mm;
       }
+      .margin-top {
+        margin-top: 40.56mm !important;
+      }
       header {
         position: fixed;
         top: 0;
         width: calc(100% - 12.7mm);
       }
 
-      header .logo,
-      .header .logo {
+      header .logo {
         width: 50mm;
       }
 
-      .header h5,
-      header h5 {
+      header .text-bg {
         width: 60mm;
         height: 12mm;
         display: grid;
@@ -118,6 +120,7 @@
 
       .detail {
         padding-top: 8mm;
+        font-family: "Poppins", sans-serif;
       }
       .detail p,
       footer .detail p {
@@ -221,13 +224,11 @@
           font-weight: 600 !important;
         }
 
-        header .logo,
-        .header .logo {
+        header .logo {
           width: 50mm;
         }
 
-        .header h5,
-        header h5 {
+        header .text-bg {
           width: 58.711mm;
           height: 11.227mm;
           display: grid;
@@ -267,21 +268,21 @@
       <header>
         <div class="d-flex justify-content-between align-items-center">
           <img src="data:image/png;base64,{{logo}}" class="img-fluid logo" />
-          <h5 class="text-uppercase text-bg-dark">Quotation</h5>
+          <h5 class="text-uppercase text-bg-dark text-bg">Quotation</h5>
         </div>
         <div class="detail row">
           <div class="col">
-            <h4 class="fs-9 fw-bold mb-0">{{details.form.type}}</h4>
+            <p class="fs-9 fw-bold mb-0">{{details.form.type}}</p>
             <p class="fs-9">No: {{details.form.number}}</p>
             <p class="fs-9">Date: 06/08/2022</p>
           </div>
           <div class="col">
-            <h4 class="fs-9 fw-bold mb-0">Customer</h4>
+            <p class="fs-9 fw-bold mb-0">Customer</p>
             <p class="fs-9">Name: {{details.customer.name}}</p>
             <p class="fs-9">Region: {{details.customer.region}}</p>
           </div>
           <div class="col">
-            <h4 class="fs-9 fw-bold mb-0">Company</h4>
+            <p class="fs-9 fw-bold mb-0">Company</p>
             <p class="fs-9">Name: {{details.company.name}}</p>
             <p class="fs-9">Industry: {{details.company.industry}}</p>
           </div>
@@ -371,7 +372,16 @@
             </tr>
             {{/each}}
             <!-- Footer -->
-            <table class="table table-sm invoive-table invoice-footer">
+            <table class="table table-sm invoive-table invoice-footer border-top-0">
+              {{#dividedBy Items.length 6}}
+              <thead>
+                <tr class="no-border" style="border-color: transparent">
+                  <td colspan="3">
+                    <div class="header-space">&nbsp;</div>
+                  </td>
+                  {{/dividedBy}}
+                </tr>
+              </thead>
               <tbody>
                 <tr class="foot">
                   <td

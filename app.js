@@ -27,10 +27,16 @@ hbs.registerHelper("equalTo", function (val1, val2, options) {
 hbs.registerHelper("times", function (from, to, block) {
   var repetition = "";
   for (var i = from; i < to; ++i) {
-    block.data.index = i
+    block.data.index = i;
     repetition += block.fn(i);
   }
   return repetition;
+});
+//hbs helper
+hbs.registerHelper("dividedBy", function (val1, val2, options) {
+  if (val1 % val2 == 0) {
+    return options.fn(this);
+  }
 });
 
 app.use(routes);

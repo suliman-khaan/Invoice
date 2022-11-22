@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 :root {
   --dark-black: rgb(46, 46, 51);
   --border-width: 2px;
@@ -5,7 +6,12 @@
   --border-color: var(--dark-black);
   --border: var(--border-width) var(--border-style) black;
 }
-
+.header-space {
+  height: 40.56mm;
+}
+.margin-top {
+  margin-top: 40.56mm!important;
+}
 .bg-dark {
   background-color: black !important;
 }
