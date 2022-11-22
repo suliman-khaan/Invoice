@@ -3,11 +3,11 @@
   --border-width: 2px;
   --border-style: solid;
   --border-color: var(--dark-black);
-  --border: var(--border-width) var(--border-style) var(--border-color);
+  --border: var(--border-width) var(--border-style) black;
 }
 
 .bg-dark {
-  background-color: var(--dark-black) !important;
+  background-color: black !important;
 }
 
 .text-bg-dark {
@@ -15,7 +15,7 @@
 }
 
 .border-dark {
-  border-color: var(--dark-black) !important;
+  border-color: black !important;
 }
 
 .border-table {
