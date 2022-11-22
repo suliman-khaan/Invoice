@@ -84,6 +84,7 @@
       body {
         font-family: "Poppins", sans-serif;
         color: black;
+        margin: 0;
       }
       .watermark {
         position: fixed;
@@ -369,93 +370,83 @@
               <td>{{this.total}}</td>
             </tr>
             {{/each}}
-            <!-- <tr>
-              <td>
-                <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
-                {{#each this.subtitle}}
-                <p class="fs-9 fw-light mb-0 text-start">
-                  {{this.name}}: {{this.value}}
-                </p>
-                {{/each}}
-              </td>
-              <td class="fs-11">{{this.qty}}</td>
-              <td class="fs-11">{{this.total}}</td>
-            </tr> -->
-          </tbody>
-        </table>
-        <!-- Footer -->
-        <table class="table table-sm invoive-table invoice-footer">
-          <tbody>
-            <tr class="foot">
-              <td
-                rowspan="4"
-                class="text-start align-top"
-                style="border-left: 0; border-bottom-color: transparent"
-              >
-                <h5 class="fs-11 fw-medium">Payment Method</h5>
-                <div class="d-flex mb-2">
-                  <div class="col text-start me-2 border-table px-1">
-                    <div class="d-flex align-items-center py-2">
-                      <div class="col-4 pe-1 m-0">
-                        <img
-                          src="data:image/png;base64,{{wallets}}"
-                          class="icon"
-                        />
+            <tr>
+              <!-- Footer -->
+              <table class="table table-sm invoive-table invoice-footer">
+                <tbody>
+                  <tr class="foot">
+                    <td
+                      rowspan="4"
+                      class="text-start align-top"
+                      style="border-left: 0; border-bottom-color: transparent"
+                    >
+                      <h5 class="fs-11 fw-medium">Payment Method</h5>
+                      <div class="d-flex mb-2">
+                        <div class="col text-start me-2 border-table px-1">
+                          <div class="d-flex align-items-center py-2">
+                            <div class="col-4 pe-1 m-0">
+                              <img
+                                src="data:image/png;base64,{{wallets}}"
+                                class="icon"
+                              />
+                            </div>
+                            <div class="d-inline text-start m-0">
+                              <h5 class="text-start m-0 fs-9">E-Wallet</h5>
+                              <p class="fs-7 lh-8 text-start m-0">
+                                Vodafone Cash, Etisalat Cash, Orange Money
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col text-start me-2 border-table px-1">
+                          <div class="d-flex align-items-center py-2">
+                            <div class="col-4 pe-1 m-0">
+                              <img
+                                src="data:image/png;base64,{{kiosk}}"
+                                class="icon"
+                              />
+                            </div>
+                            <div class="d-inline text-start m-0">
+                              <h5 class="text-start m-0 fs-9">Kiosk Payment</h5>
+                              <p class="fs-7 lh-8 text-start m-0">
+                                Aman, Masary, Momkn
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col text-start">
+                          <p class="text-start m-0 ms-2 fs-9 credit-text">
+                            <span>Also,</span><br />
+                            Cash & Credit <br />
+                            Card at <b>Office</b>
+                          </p>
+                        </div>
                       </div>
-                      <div class="d-inline text-start m-0">
-                        <h5 class="text-start m-0 fs-9">E-Wallet</h5>
-                        <p class="fs-7 lh-8 text-start m-0">
-                          Vodafone Cash, Etisalat Cash, Orange Money
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col text-start me-2 border-table px-1">
-                    <div class="d-flex align-items-center py-2">
-                      <div class="col-4 pe-1 m-0">
-                        <img
-                          src="data:image/png;base64,{{kiosk}}"
-                          class="icon"
-                        />
-                      </div>
-                      <div class="d-inline text-start m-0">
-                        <h5 class="text-start m-0 fs-9">Kiosk Payment</h5>
-                        <p class="fs-7 lh-8 text-start m-0">
-                          Aman, Masary, Momkn
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col text-start">
-                    <p class="text-start m-0 ms-2 fs-9 credit-text">
-                      <span>Also,</span><br />
-                      Cash & Credit <br />
-                      Card at <b>Office</b>
-                    </p>
-                  </div>
-                </div>
-                <span class="fs-9 fw-light"
-                  >* This price is valid for 3 days only.</span
-                >
-              </td>
-              <td class="fs-11 fw-medium text-center">Sub Total</td>
-              <td class="fs-11 text-center">148350</td>
-            </tr>
-            <tr class="foot">
-              <td class="text-center fs-11 fw-medium">Discount</td>
-              <td class="fs-11">-7415</td>
-            </tr>
-            <tr class="foot">
-              <td class="text-center fs-11 fw-medium">Tax (14%)</td>
-              <td class="fs-11">19731</td>
-            </tr>
-            <tr class="foot">
-              <td
-                class="bg-black fs-11 fw-medium text-white text-center align-middle"
-              >
-                Total
-              </td>
-              <td>1600666</td>
+                      <span class="fs-9 fw-light"
+                        >* This price is valid for 3 days only.</span
+                      >
+                    </td>
+                    <td class="fs-11 fw-medium text-center">Sub Total</td>
+                    <td class="fs-11 text-center">148350</td>
+                  </tr>
+                  <tr class="foot">
+                    <td class="text-center fs-11 fw-medium">Discount</td>
+                    <td class="fs-11">-7415</td>
+                  </tr>
+                  <tr class="foot">
+                    <td class="text-center fs-11 fw-medium">Tax (14%)</td>
+                    <td class="fs-11">19731</td>
+                  </tr>
+                  <tr class="foot">
+                    <td
+                      class="bg-black fs-11 fw-medium text-white text-center align-middle"
+                    >
+                      Total
+                    </td>
+                    <td>1600666</td>
+                  </tr>
+                </tbody>
+              </table>
             </tr>
           </tbody>
         </table>
