@@ -196,6 +196,11 @@
         bottom: 0;
         width: calc(100% - 12.7mm);
       }
+      .text-cut{
+          text-overflow:ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
 
       @media print {
         /* @page {
@@ -263,6 +268,12 @@
         .invoice-footer .icon {
           width: 12mm;
         }
+        /* sayed suliman work */
+        .text-cut{
+          text-overflow:ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
       }
     </style>
   </head>
@@ -316,50 +327,52 @@
                 <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
                 {{!-- @One Column --}} {{#equalTo this.subtitle.length 1}}
                 {{#each this.subtitle}}
-                <p class="fs-9 fw-light mb-0 text-start">
-                  {{this.name}}: {{this.value}}
-                </p>
+                <div class="col-4">
+                  <p class="fs-9 fw-light mb-0 text-start text-cut">
+                    {{this.name}}: {{this.value}}
+                  </p>
+                </div>
                 {{/each}} {{/equalTo}} {{!-- @Two columns --}} {{#equalTo
                 this.subtitle.length 2}}
                 <div class="row p-0">
-                  <div class="col-auto">
+                  <div class="col-4">
                     {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
-                    <p class="fs-9 fw-light mb-0 text-start">
+                    <p class="fs-9 fw-light mb-0 text-start text-cut">
                       {{this.name}}: {{this.value}}
                     </p>
                     {{/with}} {{/times}}
                   </div>
-                  <div class="col-auto">
+                  <div class="col-4">
                     {{#times 5 this.subtitle.length}} {{#with (lookup
                     ../this.subtitle @index)}}
-                    <p class="fs-9 fw-light mb-0 text-start">
+                    <p class="fs-9 fw-light mb-0 text-start text-cut">
                       {{name}}: {{value}}
                     </p>
                     {{/with}} {{/times}}
                   </div>
-                  <div class="col-auto"></div>
+                  <div class="col-4"></div>
                 </div>
                 {{/equalTo}} {{!-- @Three columns --}} {{#equalTo
                 this.subtitle.length 3}}
                 <div class="row p-0">
-                  <div class="col-auto">
+                  <div class="col-4">
                     {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
-                    <p class="fs-9 fw-light mb-0 text-start">
+                    <p class="fs-9 fw-light mb-0 text-start text-cut">
                       {{this.name}}: {{this.value}}
                     </p>
                     {{/with}} {{/times}}
                   </div>
-                  <div class="col-auto">
+                  <div class="col-4">
                     {{#times 5 10}} {{#with (lookup ../this.subtitle @index)}}
-                    <p class="fs-9 fw-light mb-0 text-start">
+                    <p class="fs-9 fw-light mb-0 text-start text-cut">
                       {{name}}: {{value}}
                     </p>
                     {{/with}} {{/times}}
                   </div>
-                  <div class="col-auto">
+                  <div class="col-4">
                     {{#times 10 this.subtitle.length}} {{#with (lookup
                     ../this.subtitle @index)}}
-                    <p class="fs-9 fw-light mb-0 text-start">
+                    <p class="fs-9 fw-light mb-0 text-start text-cut">
                       {{name}}: {{value}}
                     </p>
                     {{/with}} {{/times}}
