@@ -42,11 +42,9 @@ module.exports = {
         format: "A4",
         displayHeaderFooter: false,
         printBackground: true,
-        path: `invoices/invoice.pdf`,
-        // path: `invoices/invoice-${Date.now()}.pdf`,
+        path: `invoices/invoice-${Date.now()}.pdf`,
         margin:{
           top:"12.7mm",
-          // right:"12.7mm"
           bottom:"12.7mm",
           left:"12.7mm"
         }
