@@ -125,7 +125,7 @@
         font-family: "Poppins", sans-serif;
       }
 
-      .detail p{
+      .detail p {
         margin: 1pt 0;
       }
 
@@ -196,11 +196,11 @@
         bottom: 0;
         width: calc(100% - 12.7mm);
       }
-      .text-cut{
-          text-overflow:ellipsis;
-          overflow: hidden;
-          white-space: nowrap;
-        }
+      .text-cut {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
 
       @media print {
         /* @page {
@@ -269,8 +269,8 @@
           width: 12mm;
         }
         /* sayed suliman work */
-        .text-cut{
-          text-overflow:ellipsis;
+        .text-cut {
+          text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
         }
@@ -327,10 +327,12 @@
                 <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
                 {{!-- @One Column --}} {{#equalTo this.subtitle.length 1}}
                 {{#each this.subtitle}}
-                <div class="col-4">
-                  <p class="fs-9 fw-light mb-0 text-start text-cut">
-                    {{this.name}}: {{this.value}}
-                  </p>
+                <div class="row">
+                  <div class="col-4">
+                    <p class="fs-9 fw-light mb-0 text-start text-cut">
+                      {{this.name}}: {{this.value}}
+                    </p>
+                  </div>
                 </div>
                 {{/each}} {{/equalTo}} {{!-- @Two columns --}} {{#equalTo
                 this.subtitle.length 2}}
