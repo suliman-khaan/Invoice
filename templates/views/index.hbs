@@ -41,145 +41,110 @@
         </tr>
       </thead>
       <tbody>
-        {{#each data.Items}}
-        <tr>
-          <td>
-            <h5>{{this.title}}</h5>
-            {{!-- @One Column --}}
-            {{#equalTo this.subtitle.length 1}}
-            {{#each this.subtitle}}
-            <p class="fs-9 fw-light mb-0 text-start">
-              {{this.name}}: {{this.value}}
-            </p>
-            {{/each}}
-            {{/equalTo}}
-            {{!-- @Two columns --}}
-            {{#equalTo this.subtitle.length 2}}
-            <div class="row p-0">
-              <div class="col">
-                {{#times 0 3}}
-                {{!-- Working --}}
-                {{#with (lookup ../this.subtitle @index)}}
-                <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p>
-                {{/with}}
-                {{!-- <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p> --}}
-                {{/times}}
+        <tbody>
+          {{#each data.Items}}
+          <tr>
+            <td>
+              <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
+              {{!-- @One Column --}} 
+              {{#equalTo this.subtitle.length 1}}
+              {{#each this.subtitle}}
+              <p class="fs-9 fw-light mb-0 text-start">
+                {{this.name}}: {{this.value}}
+              </p>
+              {{/each}}
+              {{/equalTo}}
+              {{!-- @Two columns --}}
+              {{#equalTo
+              this.subtitle.length 2}}
+              <div class="row p-0">
+                <div class="col-auto">
+                  {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">
+                    {{this.name}}: {{this.value}}
+                  </p>
+                  {{/with}} {{/times}}
+                </div>
+                <div class="col-auto">
+                  {{#times 5 this.subtitle.length}}
+                  {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">
+                    {{name}}: {{value}}
+                  </p>
+                  {{/with}} 
+                  {{/times}}
+                </div>
+                <div class="col-auto"></div>
               </div>
-              <div class="col">
-                {{#times 3 this.subtitle.length}}
-                {{!-- Working --}}
-                {{#with (lookup ../this.subtitle @index)}}
-                <p class="mb-0 text-start">{{name}}: {{value}}</p>
-                {{/with}}
-                {{!-- <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p> --}}
-                {{/times}}
+              {{/equalTo}} {{!-- @Three columns --}} {{#equalTo
+              this.subtitle.length 3}}
+              <div class="row p-0">
+                <div class="col-auto">
+                  {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">
+                    {{this.name}}: {{this.value}}
+                  </p>
+                  {{/with}} {{/times}}
+                </div>
+                <div class="col-auto">
+                  {{#times 5 10}} {{#with (lookup ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">
+                    {{name}}: {{value}}
+                  </p>
+                  {{/with}} {{/times}}
+                </div>
+                <div class="col-auto">
+                  {{#times 10 this.subtitle.length}} {{#with (lookup
+                  ../this.subtitle @index)}}
+                  <p class="fs-9 fw-light mb-0 text-start">
+                    {{name}}: {{value}}
+                  </p>
+                  {{/with}} {{/times}}
+                </div>
               </div>
-              <div class="col"></div>
-            </div>
-            {{/equalTo}}
-            {{!-- @Three columns --}}
-            {{#equalTo this.subtitle.length 3}}
-            <div class="row p-0">
-              <div class="col">
-                {{#times 0 5}}
-                {{!-- Working --}}
-                {{#with (lookup ../this.subtitle @index)}}
-                <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p>
-                {{/with}}
-                {{!-- <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p> --}}
-                {{/times}}
-              </div>
-              <div class="col">
-                {{#times 5 10}}
-                {{!-- Working --}}
-                {{#with (lookup ../this.subtitle @index)}}
-                <p class="mb-0 text-start">{{name}}: {{value}}</p>
-                {{/with}}
-                {{!-- <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p> --}}
-                {{/times}}
-              </div>
-              <div class="col">
-                {{#times 10 this.subtitle.length}}
-                {{!-- Working --}}
-                {{#with (lookup ../this.subtitle @index)}}
-                <p class="mb-0 text-start">{{name}}: {{value}}</p>
-                {{/with}}
-                {{!-- <p class="mb-0 text-start">{{this.name}}: {{this.value}}</p> --}}
-                {{/times}}
-              </div>
-            </div>
-            {{/equalTo}}
-          </td>
-          <td>{{this.qty}}</td>
-          <td>{{this.total}}</td>
-        </tr>
-        {{/each}}
-        {{!-- <tr>
-          <td>
-            <h5>UofCanada - Sunshade</h5>
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span>
-          </td>
-          <td>300</td>
-          <td>5000</td>
-        </tr>
-        <tr>
-          <td>
-            <h5>UofCanada - Sunshade</h5>
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span>
-          </td>
-          <td>300</td>
-          <td>5000</td>
-        </tr>
-        <tr>
-          <td>
-            <h5>UofCanada - Sunshade</h5>
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span><br />
-            <span>Print Type: Silkscreen or UV</span>
-          </td>
-          <td>300</td>
-          <td>5000</td>
-        </tr> --}}
+              {{/equalTo}}
+            </td>
+            <td>{{this.qty}}</td>
+            <td>{{this.total}}</td>
+          </tr>
+          {{/each}}
+          <!-- Footer -->
+          <!-- <tr>
+            </tr> -->
         <!-- Footer -->
         <tr class="foot {{#dividedBy data.Items.length 6}}margin-top{{/dividedBy}}">
           <td rowspan="4" class="text-start align-top" style="border-left: 0; border-bottom-color: transparent">
             <h5>Payment Method</h5>
-            <div class="d-flex mb-2">
-              <div class="col text-start me-2 border-table px-1">
-                <div class="d-flex align-items-center py-2">
-                  <div class="col-3 px-2 m-0">
-                    <img src="/img/wallets.png" class="img-fluid icon" />
+            <div class="d-flex mb-2 payment-box">
+              <div class="text-start me-2 border-table px-1" style="width: 40.35mm;">
+                <div class="d-flex align-items-center py-1">
+                  <div class="pe-1 m-0">
+                    <img src="/img/wallets.png" class="icon" />
                   </div>
                   <div class="d-inline text-start m-0">
-                    <h5 class="text-start m-0">E-Wallet</h5>
-                    <p class="text-sm text-start m-0">
+                    <h5 class="text-start m-0 fs-9">E-Wallet</h5>
+                    <p class="fs-7 lh-8 text-start m-0">
                       Vodafone Cash, Etisalat Cash, Orange Money
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="col text-start me-2 border-table px-1">
-                <div class="d-flex align-items-center py-2">
-                  <div class="col-3 px-2 m-0">
-                    <img src="/img/kiosk.png" class="img-fluid icon" />
+              <div class="text-start me-2 border-table px-1" style="width: 40.35mm;">
+                <div class="d-flex align-items-center py-1">
+                  <div class="pe-1 m-0">
+                    <img src="/img/kiosk.png" class="icon" />
                   </div>
                   <div class="d-inline text-start m-0">
-                    <h5 class="text-start m-0">Kiosk Payment</h5>
-                    <p class="text-sm text-start m-0">
+                    <h5 class="text-start m-0 fs-9">Kiosk Payment</h5>
+                    <p class="fs-7 lh-8 text-start m-0">
                       Aman, Masary, Momkn
                     </p>
                   </div>
                 </div>
               </div>
-              <div class="col text-start">
-                <p class="text-start m-0 ms-2 credit-text">
-                  <span>Also,</span><br />
+              <div class="text-start credit-text d-flex flex-column justify-content-between" style="width:24.8mm">
+                <p class="text-start m-0 fs-9">Also,</p>
+                <p class="text-start m-0 fs-9">
                   Cash & Credit <br />
                   Card at <b>Office</b>
                 </p>

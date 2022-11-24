@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+
 :root {
   --dark-black: rgb(46, 46, 51);
-  --border-width: 2px;
+  --border-width: 1pt;
   --border-style: solid;
-  --border-color: var(--dark-black);
-  --border: var(--border-width) var(--border-style) black;
+  --border-color: black;
+  --border: var(--border-width) var(--border-style) var(--border-color);
 }
-.header-space {
-  height: 40.56mm;
+
+.bg-dark {
+  background-color: var(--dark-black) !important;
 }
-.margin-top {
-  margin-top: 40.56mm!important;
-}
+
 .bg-dark {
   background-color: black !important;
 }
@@ -21,71 +21,233 @@
 }
 
 .border-dark {
-  border-color: black !important;
+  border-color: var(--border-color) !important;
 }
 
 .border-table {
   border: var(--border);
 }
 
-body {
-  font-family: "Poppins", sans-serif;
+.fs-7 {
+  font-size: 7pt;
 }
 
-header .logo,
-.header .logo {
+.fs-9 {
+  font-size: 9pt;
+}
+
+.fs-11 {
+  font-size: 11pt;
+}
+
+.fs-12 {
+  font-size: 12pt;
+}
+
+.fw-light {
+  font-weight: 300;
+}
+
+.fw-medium {
+  font-weight: 500;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.lh-8 {
+  line-height: 8.4pt;
+}
+
+.mb-p-2 {
+  margin-bottom: 2pt;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  color: black;
+}
+
+body {
+  margin: 0;
+}
+
+.watermark {
+  position: fixed;
+  top: 22.51mm;
+  left: 73.26mm;
+  height: 226mm;
+  width: 163mm;
+}
+
+.header-space {
+  height: 40.56mm;
+}
+
+.margin-top {
+  margin-top: 40.56mm !important;
+}
+/* 
+header {
+  position: fixed;
+  top: 0;
+  width: calc(100% - 12.7mm);
+} */
+
+header .logo {
   width: 50mm;
 }
 
-.header h5,
-header h5 {
-  padding: 12px 50px;
-  text-align: center;
+header .text-bg {
+  width: 60mm;
+  height: 12mm;
+  display: grid;
+  place-items: center;
+  font-weight: 700 !important;
 }
 
-.detail h5 {
-  margin-bottom: 5px;
-  font-weight: 600;
+.detail {
+  padding-top: 8mm;
+  font-family: "Poppins", sans-serif;
 }
 
 .detail p,
 footer .detail p {
-  margin-bottom: 2px;
+  margin: 1pt 0;
 }
 
 .invoice-table,
+.invoice-footer,
 .invoice-table thead th,
 .invoice-table tbody td,
+.invoice-footer tbody td,
 .invoice-table tfoot td {
   border: var(--border);
+  color: black;
+}
+
+.invoice-table {
+  border-top-color: transparent;
 }
 
 .invoice-table,
+.invoice-footer,
 .invoice-table thead th:first-child,
 .invoice-table thead th:last-child,
 .invoice-table tbody :not(.foot) td:first-child,
-.invoice-table tbody td:last-child {
+.invoice-table tbody td:last-child,
+.invoice-footer tbody td:last-child {
   border-left: none !important;
   border-right: none !important;
+}
+
+.invoice-table thead th {
+  font-weight: 700 !important;
+}
+
+.invoice-footer {
+  margin-top: -1pt;
 }
 
 .invoice-table tr td:first-child h5 {
   text-align: start;
 }
 
-.invoice-table tr :not(td:first-child, th:first-child) {
+.invoice-table tr :not(td:first-child, th:first-child),
+.invoice-footer tr:not(:first-child) :not(td:first-child, th:first-child) {
   vertical-align: middle;
   text-align: center;
 }
 
 .invoice-table tbody tr:not(.foot) {
-  height: 170px !important;
+  height: 93.75pt !important;
 }
 
-.invoice-table .credit-text {
-  line-height: 1.2;
+.payment-box col:not(:last-child){
+  /* width: 40.35mm; */
+  background-color: red!important;
+}
+.payment-box col:last-child{
+  padding: 2px 0;
+}
+.invoice-table .credit-text p {
+  line-height: 1;
+}
+.icon{
+  width: 12mm;
 }
 
-.invoice-table .credit-text span {
-  line-height: 2.5;
+/* footer {
+  position: fixed;
+  bottom: 0;
+  width: calc(100% - 12.7mm);
+} */
+
+@media print {
+  /* @page {
+          margin: 12.7mm 0 12.7mm 12.7mm;
+        } */
+
+  body {
+    margin-right: 12.7mm;
+  }
+
+  table {
+    page-break-after: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  td {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  header .logo {
+    width: 50mm;
+  }
+
+  header .text-bg {
+    width: 58.711mm;
+    height: 11.227mm;
+    display: grid;
+    place-items: center;
+    font-size: 12pt;
+    font-weight: 700 !important;
+  }
+
+  .invoice-table,
+  .border-table,
+  .invoice-table thead th,
+  .invoice-table tbody td,
+  .invoice-footer tbody td,
+  .invoice-table tfoot td {
+    border-width: var(--border-width);
+  }
+
+  .invoice-table td:nth-last-child(1),
+  .invoice-footer td:nth-last-child(1) {
+    width: 38.5mm;
+  }
+
+  .invoice-table td:nth-last-child(2),
+  .invoice-footer td:nth-last-child(2) {
+    width: 26.5mm;
+  }
+
+  .invoice-footer .icon {
+    width: 10mm;
+  }
 }
