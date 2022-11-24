@@ -81,10 +81,11 @@
       .mb-p-2 {
         margin-bottom: 2pt;
       }
-
-      body {
+      * {
         font-family: "Poppins", sans-serif;
         color: black;
+      }
+      body {
         margin: 0;
       }
       .watermark {
@@ -372,7 +373,9 @@
             </tr>
             {{/each}}
             <!-- Footer -->
-            <table class="table table-sm invoive-table invoice-footer border-top-0">
+            <table
+              class="table table-sm invoive-table invoice-footer border-top-0"
+            >
               {{#dividedBy Items.length 6}}
               <thead>
                 <tr class="no-border" style="border-color: transparent">
