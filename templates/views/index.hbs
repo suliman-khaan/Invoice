@@ -41,75 +41,77 @@
         </tr>
       </thead>
       <tbody>
-        <tbody>
-          {{#each data.Items}}
-          <tr>
-            <td>
-              <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
-              {{!-- @One Column --}} 
-              {{#equalTo this.subtitle.length 1}}
-              {{#each this.subtitle}}
-              <p class="fs-9 fw-light mb-0 text-start">
-                {{this.name}}: {{this.value}}
-              </p>
-              {{/each}}
-              {{/equalTo}}
-              {{!-- @Two columns --}}
-              {{#equalTo
-              this.subtitle.length 2}}
-              <div class="row p-0">
-                <div class="col-auto">
-                  {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
-                  <p class="fs-9 fw-light mb-0 text-start">
-                    {{this.name}}: {{this.value}}
-                  </p>
-                  {{/with}} {{/times}}
-                </div>
-                <div class="col-auto">
-                  {{#times 5 this.subtitle.length}}
-                  {{#with (lookup ../this.subtitle @index)}}
-                  <p class="fs-9 fw-light mb-0 text-start">
-                    {{name}}: {{value}}
-                  </p>
-                  {{/with}} 
-                  {{/times}}
-                </div>
-                <div class="col-auto"></div>
+      <tbody>
+        {{#each data.Items}}
+        <tr>
+          <td>
+            <h5 class="fs-11 fw-medium mb-p-2">{{this.title}}</h5>
+            {{!-- @One Column --}}
+            {{#equalTo this.subtitle.length 1}}
+            {{#each this.subtitle}}
+            <div class="col-4">
+              <p class="fs-9 fw-light mb-0 text-start text-cut">
+            {{this.name}}: {{this.value}}
+            </p>
+            </div>
+            {{/each}}
+            {{/equalTo}}
+            {{!-- @Two columns --}}
+            {{#equalTo
+            this.subtitle.length 2}}
+            <div class="row p-0">
+              <div class="col-4">
+                {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
+                <p class="fs-9 fw-light mb-0 text-start text-cut">
+                  {{this.name}}: {{this.value}}
+                </p>
+                {{/with}} {{/times}}
               </div>
-              {{/equalTo}} {{!-- @Three columns --}} {{#equalTo
-              this.subtitle.length 3}}
-              <div class="row p-0">
-                <div class="col-auto">
-                  {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
-                  <p class="fs-9 fw-light mb-0 text-start">
-                    {{this.name}}: {{this.value}}
-                  </p>
-                  {{/with}} {{/times}}
-                </div>
-                <div class="col-auto">
-                  {{#times 5 10}} {{#with (lookup ../this.subtitle @index)}}
-                  <p class="fs-9 fw-light mb-0 text-start">
-                    {{name}}: {{value}}
-                  </p>
-                  {{/with}} {{/times}}
-                </div>
-                <div class="col-auto">
-                  {{#times 10 this.subtitle.length}} {{#with (lookup
-                  ../this.subtitle @index)}}
-                  <p class="fs-9 fw-light mb-0 text-start">
-                    {{name}}: {{value}}
-                  </p>
-                  {{/with}} {{/times}}
-                </div>
+              <div class="col-4">
+                {{#times 5 this.subtitle.length}}
+                {{#with (lookup ../this.subtitle @index)}}
+                <p class="fs-9 fw-light mb-0 text-start text-cut">
+                  {{name}}: {{value}}
+                </p>
+                {{/with}}
+                {{/times}}
               </div>
-              {{/equalTo}}
-            </td>
-            <td>{{this.qty}}</td>
-            <td>{{this.total}}</td>
-          </tr>
-          {{/each}}
-          <!-- Footer -->
-          <!-- <tr>
+              <div class="col-4"></div>
+            </div>
+            {{/equalTo}} {{!-- @Three columns --}} {{#equalTo
+            this.subtitle.length 3}}
+            <div class="row p-0">
+              <div class="col-4">
+                {{#times 0 5}} {{#with (lookup ../this.subtitle @index)}}
+                <p class="fs-9 fw-light mb-0 text-start text-cut">
+                  {{this.name}}: {{this.value}}
+                </p>
+                {{/with}} {{/times}}
+              </div>
+              <div class="col-4">
+                {{#times 5 10}} {{#with (lookup ../this.subtitle @index)}}
+                <p class="fs-9 fw-light mb-0 text-start text-cut">
+                  {{name}}: {{value}}
+                </p>
+                {{/with}} {{/times}}
+              </div>
+              <div class="col-4">
+                {{#times 10 this.subtitle.length}} {{#with (lookup
+                ../this.subtitle @index)}}
+                <p class="fs-9 fw-light mb-0 text-start text-cut">
+                  {{name}}: {{value}}
+                </p>
+                {{/with}} {{/times}}
+              </div>
+            </div>
+            {{/equalTo}}
+          </td>
+          <td>{{this.qty}}</td>
+          <td>{{this.total}}</td>
+        </tr>
+        {{/each}}
+        <!-- Footer -->
+        <!-- <tr>
             </tr> -->
         <!-- Footer -->
         <tr class="foot {{#dividedBy data.Items.length 6}}margin-top{{/dividedBy}}">

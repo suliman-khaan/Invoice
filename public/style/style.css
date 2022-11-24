@@ -251,3 +251,9 @@ footer .detail p {
     width: 10mm;
   }
 }
+/* sayed suliman work */
+.text-cut{
+  text-overflow:ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
